@@ -2,6 +2,7 @@
 #include "Bridge.h"
 #include <QFileInfo>
 #include <QDir>
+#include <QTimer>
 
 SourceViewerManager::SourceViewerManager(QWidget* parent) : QTabWidget(parent)
 {
@@ -49,6 +50,12 @@ void SourceViewerManager::loadSourceFile(QString path, duint addr)
     connect(newView, SIGNAL(showCpu()), this, SIGNAL(showCpu()));
     addTab(newView, title);
     setCurrentIndex(count() - 1);
+    // https://forum.qt.io/post/132664
+    // For some reason the viewport() in the AbstractTableView does not have the right size which means setSelection completely fails
+    QTimer::singleShot(50, [newView, addr]()
+    {
+        newView->setSelection(addr);
+    });
 }
 
 void SourceViewerManager::closeTab(int index)
