@@ -3,6 +3,7 @@
 #include "ValidateExpressionThread.h"
 #include "StringUtil.h"
 #include <Configuration.h>
+#include <QRegExpValidator>
 
 WordEditDialog::WordEditDialog(QWidget* parent)
     : QDialog(parent),

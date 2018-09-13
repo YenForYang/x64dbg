@@ -6,6 +6,7 @@
 #include "Configuration.h"
 #include "StringUtil.h"
 #include "MiscUtil.h"
+#include <QAction>
 
 AppearanceDialog::AppearanceDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AppearanceDialog)
 {
